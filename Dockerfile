@@ -1,7 +1,7 @@
 FROM golang:1.11 as builder
 WORKDIR /src/github.com/devinotelecom/prometheus-vmware-exporter
 COPY ./ /src/github.com/devinotelecom/prometheus-vmware-exporter
-RUN go get -d -v
+RUN go mod init && go mod tidy
 RUN CGO_ENABLED=0 GOOS=linux go build
 
 FROM alpine:3.8
